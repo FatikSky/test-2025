@@ -1,4 +1,4 @@
-import { _Link } from "@/pages/types";
+import { _Link } from "@/types";
 
 interface Props {
     item: _Link;

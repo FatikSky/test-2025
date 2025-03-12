@@ -1,5 +1,5 @@
 import LinkButton from "@/components/LinkButton";
-import { _Link } from "./types";
+import { _Link } from "../types";
 import axios from "axios";
 import { GetServerSidePropsContext } from "next";
 
