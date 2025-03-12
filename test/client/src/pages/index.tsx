@@ -36,7 +36,7 @@ export default function Home({ linkList } : Props) {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const response = await axios.get(`http://localhost:3000/links`);
+  const response = await axios.get(`https://server-theta-one-38.vercel.app/links`);
   return {
     props: {
       linkList: response.data
