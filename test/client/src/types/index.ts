@@ -4,3 +4,9 @@ export type _Link = {
     icon: string;
     url: string;
 };
+
+export type _Home = {
+    image: string;
+    fullName: string;
+    description: string;
+};
