@@ -1,6 +1,11 @@
 const express = require('express');
+const multer = require('multer');
+const bodyParser = require('body-parser');
 
 const router = express.Router();
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
+const upload = multer();
 
 let links = [
     {
@@ -39,7 +44,18 @@ router.get("/", (req, res) => {
     res.json(links);
 });
 
-router.post('/', (req, res) => {
+router.get("/:id", (req, res) => {
+    const id = Number.parseInt(req.params.id);
+    let link = links.find((item) => item.id === id);
+    if(link === undefined){
+        next(new Error('Wrong id!'));
+    }
+    else{
+        res.json(link);
+    }
+});
+
+router.post('/', upload.none(), (req, res) => {
     let link = {
         id: links.length + 1,
         title: req.body.title,
@@ -47,10 +63,10 @@ router.post('/', (req, res) => {
         url: req.body.url,
     };
     links.push(link);
-    res.send('Link successfully added.');
+    res.json(link);
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", upload.none(), (req, res) => {
     const id = Number.parseInt(req.params.id);
     let link = links.find((item) => item.id === id);
     if(link === undefined){
